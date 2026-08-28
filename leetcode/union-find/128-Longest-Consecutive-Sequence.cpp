@@ -4,6 +4,7 @@ public:
         // if(nums.empty()) return 0;
         unordered_set<int>st;
         int longest=0;
+        st.reserve(nums.size());
         for(auto& it:nums){
             st.insert(it);
         }
