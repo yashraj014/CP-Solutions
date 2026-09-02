@@ -15,22 +15,26 @@ class Solution {
         for(int i=0;i<arr.size();i++){
             mpp[arr[i]]++;
         }
-        
-        priority_queue<P,vector<P>,compare>pq;
+        int n = arr.size();
+        vector<vector<int>>bucket(n+1);
         
         for(auto& it:mpp){
-            pq.push({it.second,it.first});
+            bucket[it.second].push_back(it.first);
+        }
+         vector<int>ans;
+        for(int freq = n;freq>=1 && ans.size()<k;freq--){
+            if(bucket[freq].empty()) continue;
             
-            if(pq.size()>k){
-                pq.pop();
+            sort(bucket[freq].begin(),bucket[freq].end(),greater<int>());
+            
+            for(auto& it:bucket[freq]){
+                ans.push_back(it);
+                
+                if(ans.size()==k) break;
             }
         }
-        vector<int>ans(k);
-        int j=k-1;
-        while(!pq.empty()){
-            ans[j--]=pq.top().second;
-            pq.pop();
-        }
+       
+        
         return ans;
     }
 };
