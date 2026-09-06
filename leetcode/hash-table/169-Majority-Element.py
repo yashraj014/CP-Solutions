@@ -1,15 +1,11 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        major=nums[0]
-        sum=0
+        major=None
+        count=0
         for num in nums:
-            if num==major:
-                sum+=1
-            else:
-                sum-=1
-            if sum==0:
-                major =num
-                sum=1
-        if nums.count(major)>=len(nums)/2: 
-            return major
+           if count==0:
+            major=num
+           count +=(1 if num==major else -1)
+        
+        return major
 
