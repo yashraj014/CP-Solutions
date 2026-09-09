@@ -10,11 +10,12 @@ class Solution {
 
             String temp = new String(chars);
 
-            if(!mpp.containsKey(temp)){
-                mpp.put(temp,new ArrayList<>());
-            }
+            // if(!mpp.containsKey(temp)){
+            //     mpp.put(temp,new ArrayList<>());
+            // }
 
-            mpp.get(temp).add(s);
+            // mpp.get(temp).add(s);
+            mpp.computeIfAbsent(temp, k -> new ArrayList<>()).add(s);
         }
         List<List<String>> ans = new ArrayList<>(mpp.values());
        
