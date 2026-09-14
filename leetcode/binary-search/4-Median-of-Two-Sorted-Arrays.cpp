@@ -1,106 +1,38 @@
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        if(nums1.size()>nums2.size()){
+           return findMedianSortedArrays(nums2,nums1);
+        }
+
         int m = nums1.size();
         int n = nums2.size();
-        vector<int> ans(m + n);
-        int i = 0, j = 0;
-        int k = 0;
-        int size = m + n;
-        if ((m + n) % 2 == 0) {
 
-            int idx1 = size / 2 - 1;
-            int idx2 = size / 2;
-            int el1, el2;
-            while (i < m && j < n) {
-                if (nums1[i] <= nums2[j]) {
-                    if (k == idx1) {
-                        el1 = nums1[i];
+        int l=0,r=m;
+        while(l<=r){
+            int Px = l +(r-l)/2;
 
-                    } else if (k == idx2) {
-                        el2 = nums1[i];
-                    }
-                    i++;
-                } else {
-                    if (k == idx1) {
-                        el1 = nums2[j];
+            int Py = (m+n+1)/2-Px;
 
-                    } else if (k == idx2) {
-                        el2 = nums2[j];
-                    }
-                    j++;
-                }
-                k++;
+            int x1 = (Px==0) ? INT_MIN : nums1[Px-1];
+            int x2 = (Py==0) ? INT_MIN : nums2[Py-1];
+
+            int x3 = (Px==m) ? INT_MAX : nums1[Px];
+            int x4 = (Py==n) ? INT_MAX : nums2[Py];
+
+            if(x1<=x4 && x2<=x3){
+                if((m+n)%2==1) return max(x1,x2);
+
+                return (max(x1,x2) +min(x3,x4))/2.0;
             }
 
-            while (i < m) {
-                if (k == idx1) {
-                    el1 = nums1[i];
+            if(x1>x4){
+                r = Px-1;
+            }else{
+                l = Px+1;
+            }
 
-                } else if (k == idx2) {
-                    el2 = nums1[i];
-                }
-                k++;
-                i++;
-            }
-            while (j < n) {
-                if (k == idx1) {
-                    el1 = nums2[j];
-
-                } else if (k == idx2) {
-                    el2 = nums2[j];
-                }
-                k++;
-                j++;
-            }
-            return double(el1 + el2) / 2;
-        } else {
-            int idx = size / 2;
-            int el;
-            bool flag=false;
-            while (i < m && j < n) {
-                if (nums1[i] <= nums2[j]) {
-                    if (k == idx) {
-                        el = nums1[i];
-                        flag=true;
-                        break;
-                    }
-
-                    i++;
-                } else {
-                    if (k == idx) {
-                        el = nums2[j];
-                        flag=true;
-                        break;
-                    }
-
-                    j++;
-                }
-                k++;
-            }
-            while (!flag && i < m) {
-                if (k == idx) {
-                    el = nums1[i];
-                    flag = true;
-                    break;
-                }
-                k++;
-                i++;
-            }
-            while (!flag && j < n) {
-                if (k == idx) {
-                    el = nums2[j];
-                    flag= true;
-                    break;
-                }
-                k++;
-                j++;
-            }
-           
-            return double(el);
         }
-    
-    return 0.000;
-}
-}
-;
+        return -1;
+    }
+};
