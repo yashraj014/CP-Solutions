@@ -8,13 +8,13 @@ Codeforces, LeetCode, CSES, CodeChef &amp; GeeksforGeeks solutions, organized cl
 
 Synced automatically by SolveBase.
 
-**Total solved: 78**
+**Total solved: 79**
 
 ## Codeforces
 
 Solutions by [yashraj_014](https://codeforces.com/profile/yashraj_014), organized by difficulty rating.
 
-**Solved: 11**
+**Solved: 12**
 
 | Difficulty | Solved |
 | --- | --- |
@@ -22,6 +22,7 @@ Solutions by [yashraj_014](https://codeforces.com/profile/yashraj_014), organize
 | [1100](./codeforces/1100) | 2 |
 | [1200](./codeforces/1200) | 2 |
 | [1300](./codeforces/1300) | 1 |
+| [1500](./codeforces/1500) | 1 |
 | [Unrated](./codeforces/Unrated) | 2 |
 
 
